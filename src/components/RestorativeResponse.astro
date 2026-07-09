@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import img from '../assets/images/FullSizeRender_VSCO.jpg';
+import home from '../data/home.json';
+
+const benefits = home.benefits;
+---
+
+<section class="section section--linen" id="response">
+  <div class="container grid">
+    <div class="copy reveal">
+      <p class="eyebrow">The Restorative Response</p>
+      <h2>{home.responseHeading}</h2>
+      {home.responseBody.map((para) => <p>{para}</p>)}
+      <ul class="chips">
+        {benefits.map((b) => <li>{b}</li>)}
+      </ul>
+    </div>
+
+    <figure class="media reveal">
+      <Image
+        src={img}
+        alt="A hand gently reaching toward a hanging chime of natural seed pods by a bright window"
+        widths={[480, 720, 960]}
+        sizes="(max-width: 900px) 90vw, 40vw"
+        loading="lazy"
+      />
+    </figure>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.75rem 0 0;
+  }
+  .chips li {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--espresso);
+    background: rgba(246, 241, 232, 0.7);
+    border: 1px solid var(--sand);
+    border-radius: 999px;
+    padding: 0.55rem 1.1rem;
+  }
+  .media {
+    margin: 0;
+  }
+  .media :global(img) {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .media {
+      order: -1;
+    }
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/images/IMG_0978.jpg';
+import { site } from '../data/site';
+import about from '../data/about.json';
+---
+
+<section class="section section--linen" id="about">
+  <div class="container grid">
+    <figure class="portrait reveal">
+      <Image
+        src={portrait}
+        alt={`Portrait of ${site.facilitator}`}
+        widths={[420, 640, 840]}
+        sizes="(max-width: 900px) 70vw, 34vw"
+        loading="lazy"
+      />
+    </figure>
+
+    <div class="copy reveal">
+      <p class="eyebrow">About</p>
+      <h2>{about.heading}</h2>
+      <p class="lead">{about.lead}</p>
+      {about.paragraphs.map((para) => <p>{para}</p>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .portrait {
+    margin: 0;
+  }
+  .portrait :global(img) {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+  }
+  .copy .lead {
+    margin-bottom: 1.3rem;
+  }
+  .copy p:not(.lead) {
+    color: var(--text-soft);
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .portrait {
+      max-width: 22rem;
+      margin-inline: auto;
+    }
+  }
+</style>

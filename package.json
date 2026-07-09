@@ -1,0 +1,19 @@
+{
+  "name": "restorative-sound-healing",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Marketing website for Restorative Sound Healing — the practice of Abigail Honn.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "@fontsource/cormorant-garamond": "^5.0.0",
+    "@fontsource/mulish": "^5.0.0"
+  }
+}

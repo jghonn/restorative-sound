@@ -1,0 +1,72 @@
+---
+// Self-hosted fonts (only the weights actually used)
+import '@fontsource/cormorant-garamond/500.css';
+import '@fontsource/cormorant-garamond/500-italic.css';
+import '@fontsource/cormorant-garamond/600.css';
+import '@fontsource/mulish/400.css';
+import '@fontsource/mulish/600.css';
+import '@fontsource/mulish/700.css';
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${site.brand} — ${site.descriptor}`,
+  description = site.tagline,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#3e2c22" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.brand} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // Gentle reveal-on-scroll; respects prefers-reduced-motion via CSS.
+      const els = document.querySelectorAll('.reveal');
+      if (
+        'IntersectionObserver' in window &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12 }
+        );
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
+  </body>
+</html>

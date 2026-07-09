@@ -1,0 +1,189 @@
+---
+import { site } from '../data/site';
+
+const links = [
+  { href: '#offerings', label: 'Offerings' },
+  { href: '#about', label: 'About' },
+  { href: '#faq', label: 'FAQ' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="site-header" data-header>
+  <div class="container bar">
+    <a class="wordmark" href="#top" aria-label={`${site.brand} — home`}>
+      Restorative <span>Sound Healing</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" data-toggle>
+        <span class="visually-hidden">Menu</span>
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu" data-menu>
+        {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        <li><a class="btn nav-cta" href="#contact">Inquire</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1.15rem;
+  }
+  .wordmark {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.35rem;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: var(--bone);
+    text-shadow: 0 1px 12px rgba(43, 39, 35, 0.4);
+  }
+  .wordmark span {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.9rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .nav-menu a {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bone);
+    text-shadow: 0 1px 10px rgba(43, 39, 35, 0.4);
+  }
+  .nav-menu a:hover {
+    color: var(--sand);
+  }
+  .nav-cta,
+  .nav-cta:hover {
+    color: var(--bone) !important;
+    text-shadow: none;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 0;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  .bars,
+  .bars::before,
+  .bars::after {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--bone);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .bars::before,
+  .bars::after {
+    content: '';
+    position: relative;
+  }
+  .bars::before { top: -8px; }
+  .bars::after { top: 6px; }
+
+  /* Scrolled / solid state */
+  .site-header.is-scrolled {
+    background: rgba(246, 241, 232, 0.94);
+    backdrop-filter: saturate(120%) blur(8px);
+    box-shadow: 0 8px 24px -20px rgba(43, 39, 35, 0.6);
+  }
+  .site-header.is-scrolled .wordmark,
+  .site-header.is-scrolled .nav-menu a {
+    color: var(--espresso);
+    text-shadow: none;
+  }
+  .site-header.is-scrolled .nav-menu a:hover {
+    color: var(--accent);
+  }
+  .site-header.is-scrolled .nav-cta,
+  .site-header.is-scrolled .nav-cta:hover {
+    color: var(--bone) !important;
+  }
+  .site-header.is-scrolled .bars,
+  .site-header.is-scrolled .bars::before,
+  .site-header.is-scrolled .bars::after {
+    background: var(--espresso);
+  }
+
+  @media (max-width: 760px) {
+    .nav-toggle {
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+    .nav-menu {
+      position: fixed;
+      inset: 0;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.75rem;
+      background: rgba(62, 44, 34, 0.98);
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+    }
+    .nav-menu a {
+      color: var(--bone);
+      font-size: 1rem;
+      text-shadow: none;
+    }
+    .nav.is-open .nav-menu {
+      transform: none;
+    }
+    .nav.is-open .bars {
+      background: transparent;
+    }
+    .nav.is-open .bars::before {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .nav.is-open .bars::after {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const onScroll = () => {
+    if (window.scrollY > 40) header?.classList.add('is-scrolled');
+    else header?.classList.remove('is-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const nav = header?.querySelector('.nav');
+  const toggle = header?.querySelector('[data-toggle]');
+  const menu = header?.querySelector('[data-menu]');
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => {
+      nav?.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>

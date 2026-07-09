@@ -1,0 +1,137 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import postpartumImg from '../assets/images/IMG_0966.jpg';
+import christianImg from '../assets/images/IMG_3792.jpg';
+import privateImg from '../assets/images/IMG_0918_VSCO.jpg';
+import home from '../data/home.json';
+
+// Editable via /admin → Offerings. Photo choice maps to a bundled, optimized image.
+const imageMap = {
+  postpartum: postpartumImg,
+  christian: christianImg,
+  private: privateImg,
+};
+
+const offerings = (await getCollection('offerings')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<section class="section section--bone" id="offerings">
+  <div class="container">
+    <header class="head reveal">
+      <p class="eyebrow">Offerings</p>
+      <h2>{home.offeringsHeading}</h2>
+      <p class="measure sub">{home.offeringsIntro}</p>
+    </header>
+
+    <div class="cards">
+      {
+        offerings.map((o) => (
+          <article class="card reveal">
+            <div class="card-media">
+              <Image
+                src={imageMap[o.data.image]}
+                alt={o.data.alt}
+                widths={[360, 560, 760]}
+                sizes="(max-width: 720px) 90vw, 32vw"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              {o.data.meta && <p class="card-meta">{o.data.meta}</p>}
+              <h3>{o.data.title}</h3>
+              <p>{o.data.description}</p>
+              <a class="card-link" href="#contact">
+                Inquire <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .head {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .head .sub {
+    margin-inline: auto;
+    color: var(--text-soft);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+  .card-media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .card-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .card:hover .card-media :global(img) {
+    transform: scale(1.04);
+  }
+  .card-body {
+    padding: 1.6rem 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .card-meta {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+  }
+  .card-body h3 {
+    margin-bottom: 0.6rem;
+  }
+  .card-body p {
+    color: var(--text-soft);
+    font-size: 0.98rem;
+  }
+  .card-link {
+    margin-top: auto;
+    padding-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .card-link span {
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+  .card-link:hover span {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 900px) {
+    .cards {
+      grid-template-columns: 1fr;
+      max-width: 30rem;
+      margin-inline: auto;
+    }
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+import { Image } from 'astro:assets';
+import heroImg from '../assets/images/IMG_0753_VSCO.jpg';
+import { site } from '../data/site';
+---
+
+<section class="hero" id="top">
+  <Image
+    class="hero-bg"
+    src={heroImg}
+    alt="A person resting with an eye pillow beside crystal singing bowls during a sound session"
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="hero-scrim"></div>
+
+  <div class="container hero-inner">
+    <p class="hero-eyebrow">{site.descriptor}</p>
+    <h1 class="hero-title">Restorative<br /><em>Sound Healing</em></h1>
+    <p class="hero-tagline">{site.tagline}</p>
+    <a class="btn hero-cta" href="#contact">Inquire about a session</a>
+  </div>
+
+  <a class="scroll-cue" href="#intro" aria-label="Scroll to learn more">
+    <span></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(43, 39, 35, 0.55) 0%,
+      rgba(43, 39, 35, 0.28) 40%,
+      rgba(62, 44, 34, 0.55) 100%
+    );
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    color: var(--bone);
+    max-width: 60ch;
+    padding-block: 8rem 6rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin: 0 0 1.1rem;
+  }
+  .hero-title {
+    color: var(--bone);
+    font-weight: 500;
+    margin: 0 0 1.2rem;
+    line-height: 1.02;
+    text-shadow: 0 2px 30px rgba(43, 39, 35, 0.4);
+  }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 500;
+  }
+  .hero-tagline {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+    line-height: 1.4;
+    max-width: 46ch;
+    margin: 0 0 2rem;
+    color: rgba(246, 241, 232, 0.94);
+  }
+
+  .scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 2rem;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 26px;
+    height: 42px;
+    border: 1.5px solid rgba(246, 241, 232, 0.7);
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+  }
+  .scroll-cue span {
+    width: 3px;
+    height: 8px;
+    border-radius: 3px;
+    background: rgba(246, 241, 232, 0.9);
+    animation: cue 1.8s ease-in-out infinite;
+  }
+  @keyframes cue {
+    0% { opacity: 0; transform: translateY(-4px); }
+    40% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(10px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-cue span { animation: none; }
+  }
+</style>

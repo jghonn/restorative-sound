@@ -1,0 +1,241 @@
+/* ============================================================
+   Restorative Sound Healing — global styles
+   Palette & type per Docs/DESIGN-RECOMMENDATIONS.md
+   ============================================================ */
+
+:root {
+  /* Palette */
+  --espresso: #3e2c22;
+  --charcoal: #2b2723;
+  --clay: #a9764f;
+  --clay-dark: #8f5f3d;
+  --sand: #c9b79c;
+  --linen: #ede4d5;
+  --bone: #f6f1e8;
+  --sage: #6f7460;
+
+  /* Semantic */
+  --bg: var(--bone);
+  --bg-alt: var(--linen);
+  --bg-dark: var(--espresso);
+  --text: var(--charcoal);
+  --text-soft: #5c534a;
+  --text-on-dark: var(--bone);
+  --accent: var(--clay);
+  --accent-hover: var(--clay-dark);
+  --rule: rgba(43, 39, 35, 0.14);
+
+  /* Type */
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Mulish', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Rhythm */
+  --measure: 62ch;
+  --section-y: clamp(4.5rem, 10vw, 9rem);
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --radius: 6px;
+  --shadow-soft: 0 18px 40px -24px rgba(43, 39, 35, 0.45);
+}
+
+/* ---- Reset-ish ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  line-height: 1.75;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* ---- Headings ---- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.12;
+  margin: 0 0 0.5em;
+  color: var(--espresso);
+  letter-spacing: 0.005em;
+}
+
+h1 {
+  font-size: clamp(2.75rem, 6vw, 5rem);
+}
+h2 {
+  font-size: clamp(2rem, 4vw, 2.9rem);
+}
+h3 {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1.15em;
+}
+
+/* ---- Layout helpers ---- */
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.measure {
+  max-width: var(--measure);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+.section--bone {
+  background: var(--bone);
+}
+.section--linen {
+  background: var(--linen);
+}
+.section--dark {
+  background: var(--espresso);
+  color: var(--text-on-dark);
+}
+.section--dark h1,
+.section--dark h2,
+.section--dark h3 {
+  color: var(--bone);
+}
+
+/* Eyebrow / small label */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+.section--dark .eyebrow {
+  color: var(--sand);
+}
+
+.lead {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--espresso);
+}
+.section--dark .lead {
+  color: var(--bone);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.9rem 1.9rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bone);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.btn:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bone);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--espresso);
+  border-color: var(--sand);
+}
+.btn--ghost:hover {
+  background: var(--espresso);
+  color: var(--bone);
+  border-color: var(--espresso);
+}
+.section--dark .btn--ghost {
+  color: var(--bone);
+  border-color: rgba(246, 241, 232, 0.5);
+}
+
+/* ---- Reveal on scroll ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Accessibility: honor reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

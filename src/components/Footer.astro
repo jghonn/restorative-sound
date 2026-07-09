@@ -1,0 +1,89 @@
+---
+import { site } from '../data/site';
+
+const links = [
+  { href: '#offerings', label: 'Offerings' },
+  { href: '#about', label: 'About' },
+  { href: '#faq', label: 'FAQ' },
+  { href: '#contact', label: 'Contact' },
+];
+const year = 2026; // update per launch year
+---
+
+<footer class="footer">
+  <div class="container inner">
+    <div class="brand">
+      <p class="wordmark">Restorative <em>Sound Healing</em></p>
+      <p class="tag">{site.descriptor} · with {site.facilitator}</p>
+    </div>
+
+    <nav class="foot-nav" aria-label="Footer">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+  </div>
+
+  <div class="container base">
+    <p>© {year} {site.brand}. All rights reserved.</p>
+    <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--charcoal);
+    color: rgba(246, 241, 232, 0.72);
+    padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(246, 241, 232, 0.12);
+  }
+  .wordmark {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--bone);
+    margin: 0 0 0.25rem;
+  }
+  .wordmark em {
+    font-style: italic;
+  }
+  .tag {
+    margin: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+  .foot-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .foot-nav a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(246, 241, 232, 0.8);
+  }
+  .foot-nav a:hover {
+    color: var(--sand);
+  }
+  .base {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+  }
+  .base p {
+    margin: 0;
+  }
+  .base a {
+    color: rgba(246, 241, 232, 0.8);
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+// Homepage introduction — editable via /admin → Home Page Copy.
+import home from '../data/home.json';
+---
+
+<section class="section section--bone" id="intro">
+  <div class="container">
+    <div class="measure intro-inner reveal">
+      <p class="eyebrow">A return to true rest</p>
+      <p class="lead">{home.introLead}</p>
+      <p>{home.introBody}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro-inner {
+    margin-inline: auto;
+    text-align: center;
+  }
+  .intro-inner .lead {
+    margin-bottom: 1.4rem;
+  }
+  .intro-inner p:last-child {
+    color: var(--text-soft);
+    font-size: 1.08rem;
+  }
+</style>

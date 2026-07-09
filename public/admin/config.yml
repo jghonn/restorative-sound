@@ -1,0 +1,135 @@
+# Decap CMS configuration — the admin interface at /admin
+# --------------------------------------------------------
+# Backend: how the CMS saves changes.
+#   - git-gateway works once the site is deployed to Netlify with Netlify Identity.
+#   - Alternatively switch to the GitHub backend (see Docs/EDITING-GUIDE.md).
+# This is finalized at deploy time (needs the GitHub repo name).
+backend:
+  name: git-gateway
+  branch: main
+
+# Lets you preview/edit the admin locally before deploy:
+#   1) npm run dev         (in one terminal)
+#   2) npx decap-server    (in another terminal)
+#   3) open http://localhost:4321/admin/
+local_backend: true
+
+site_url: https://restorativesoundhealing.com
+
+# Where uploaded images are stored / referenced.
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  # ---- Singletons: site-wide settings & section copy ----
+  - name: settings
+    label: "Site Settings & Copy"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: general
+        label: "General & Contact"
+        file: "src/data/general.json"
+        fields:
+          - { name: descriptor, label: "Short descriptor (near logo)", widget: string }
+          - { name: tagline, label: "Tagline", widget: text }
+          - { name: email, label: "Email", widget: string }
+          - { name: phone, label: "Phone (as displayed)", widget: string }
+          - { name: phoneHref, label: "Phone (dial format, e.g. +12087897118)", widget: string }
+          - { name: instagram, label: "Instagram URL", widget: string, required: false }
+
+      - name: home
+        label: "Home Page Copy"
+        file: "src/data/home.json"
+        fields:
+          - { name: introLead, label: "Intro — opening line", widget: text }
+          - { name: introBody, label: "Intro — paragraph", widget: text }
+          - { name: responseHeading, label: "The Restorative Response — heading", widget: text }
+          - name: responseBody
+            label: "The Restorative Response — paragraphs"
+            widget: list
+            field: { name: paragraph, label: Paragraph, widget: text }
+          - name: benefits
+            label: "Benefit chips"
+            widget: list
+            field: { name: benefit, label: Benefit, widget: string }
+          - { name: offeringsHeading, label: "Offerings — heading", widget: string }
+          - { name: offeringsIntro, label: "Offerings — intro line", widget: text }
+
+      - name: about
+        label: "About"
+        file: "src/data/about.json"
+        fields:
+          - { name: heading, label: Heading, widget: string }
+          - { name: lead, label: "Opening line", widget: text }
+          - name: paragraphs
+            label: Paragraphs
+            widget: list
+            field: { name: paragraph, label: Paragraph, widget: text }
+
+  # ---- Offerings ----
+  - name: offerings
+    label: Offerings
+    label_singular: Offering
+    folder: "src/content/offerings"
+    create: true
+    delete: true
+    identifier_field: title
+    extension: json
+    format: json
+    slug: "{{order}}-{{title}}"
+    editor:
+      preview: false
+    fields:
+      - { name: order, label: "Order (lower shows first)", widget: number, default: 1, value_type: int }
+      - { name: title, label: Title, widget: string }
+      - { name: meta, label: "Meta line (e.g. In-home · ~1 hour)", widget: string, required: false }
+      - name: image
+        label: Photo
+        widget: select
+        options:
+          - { label: "Mother & child sculpture", value: postpartum }
+          - { label: "Crystal singing bowls", value: christian }
+          - { label: "Hands playing a bowl", value: private }
+      - { name: alt, label: "Photo description (for accessibility)", widget: string }
+      - { name: description, label: Description, widget: text }
+
+  # ---- FAQ ----
+  - name: faq
+    label: FAQ
+    label_singular: "FAQ item"
+    folder: "src/content/faq"
+    create: true
+    delete: true
+    identifier_field: question
+    extension: json
+    format: json
+    slug: "{{order}}-{{question}}"
+    editor:
+      preview: false
+    fields:
+      - { name: order, label: "Order (lower shows first)", widget: number, default: 1, value_type: int }
+      - { name: question, label: Question, widget: string }
+      - { name: answer, label: Answer, widget: text }
+      - { name: draft, label: "Hide this question (draft)", widget: boolean, default: false }
+
+  # ---- Testimonials ----
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    folder: "src/content/testimonials"
+    create: true
+    delete: true
+    identifier_field: name
+    extension: json
+    format: json
+    slug: "{{order}}-{{name}}"
+    editor:
+      preview: false
+    fields:
+      - { name: order, label: "Order (lower shows first)", widget: number, default: 1, value_type: int }
+      - { name: name, label: "Name", widget: string }
+      - { name: context, label: "Context (e.g. Postpartum)", widget: string, required: false }
+      - { name: quote, label: "Quote", widget: text }
+      - { name: published, label: "Show on site (published)", widget: boolean, default: false }

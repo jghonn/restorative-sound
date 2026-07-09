@@ -1,0 +1,112 @@
+---
+// FAQ — editable via /admin → FAQ. Drafts are hidden; entries sort by "order".
+import { getCollection } from 'astro:content';
+
+const faqs = (await getCollection('faq'))
+  .filter((f) => !f.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="section section--bone" id="faq">
+  <div class="container">
+    <header class="head reveal">
+      <p class="eyebrow">Questions</p>
+      <h2>Before your first session</h2>
+    </header>
+
+    <div class="faq-list measure reveal" data-faq>
+      {
+        faqs.map((f) => (
+          <details class="faq-item">
+            <summary>
+              <span>{f.data.question}</span>
+              <span class="icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>{f.data.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .head {
+    text-align: center;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .faq-list {
+    margin-inline: auto;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+  }
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.35rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    color: var(--espresso);
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .icon {
+    position: relative;
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+  }
+  .icon::before,
+  .icon::after {
+    content: '';
+    position: absolute;
+    background: var(--accent);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .icon::before {
+    top: 8px;
+    left: 0;
+    width: 18px;
+    height: 2px;
+  }
+  .icon::after {
+    left: 8px;
+    top: 0;
+    width: 2px;
+    height: 18px;
+  }
+  .faq-item[open] .icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+  .faq-answer {
+    padding: 0 0 1.4rem;
+    max-width: 58ch;
+  }
+  .faq-answer p {
+    margin: 0;
+    color: var(--text-soft);
+  }
+</style>
+
+<script>
+  // Keep only one FAQ open at a time.
+  const container = document.querySelector('[data-faq]');
+  container?.querySelectorAll('details').forEach((d) => {
+    d.addEventListener('toggle', () => {
+      if (d.open) {
+        container.querySelectorAll('details').forEach((other) => {
+          if (other !== d) other.removeAttribute('open');
+        });
+      }
+    });
+  });
+</script>
