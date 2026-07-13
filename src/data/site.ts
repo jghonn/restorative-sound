@@ -6,8 +6,8 @@ export const site = {
   // Fixed identity — change intentionally in code, not via the CMS.
   brand: 'Restorative Sound Healing',
   facilitator: 'Abigail Honn',
-  domain: 'restorativesoundhealing.com',
-  url: 'https://restorativesoundhealing.com',
+  domain: 'restorativesound.org',
+  url: 'https://restorativesound.org',
 
   // Editable via /admin → Site Settings → General & Contact.
   descriptor: general.descriptor,

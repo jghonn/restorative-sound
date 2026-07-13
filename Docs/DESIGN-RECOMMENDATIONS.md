@@ -2,6 +2,12 @@
 
 > **Brand / practice name:** Restorative Sound Healing · **Facilitator:** Abigail Honn
 
+> **Implementation status:** This system is built into the v1 site. Implemented: the palette
+> (as CSS variables in `src/styles/global.css`), the type pairing (**Cormorant Garamond** +
+> **Mulish**, self-hosted), and the full single-page layout, section by section. Still
+> outstanding: a proper **"Restorative Sound Healing" wordmark** (currently styled text) and
+> CMS-managed photo swaps (curated images are used for v1). See [README](../README.md).
+
 Derived from the existing logo wordmark and the WebReady photography. The whole visual
 system already exists *in the images* — warm, earthy, quiet, natural. The site's job is to
 get out of the way and let that atmosphere breathe: generous white space, slow scrolling,

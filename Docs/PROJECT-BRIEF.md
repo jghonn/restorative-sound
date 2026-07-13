@@ -1,7 +1,13 @@
 # Project Brief — Restorative Sound Healing
 
 > **Brand / practice name:** Restorative Sound Healing · **Facilitator:** Abigail Honn ·
-> **Domain:** `restorativesoundhealing.com`
+> **Domain:** `restorativesound.org` *(purchased)*
+
+> **Update:** The v1 site is built (Astro + Decap CMS). The single-page structure below is
+> implemented, and all copy now lives in editable files (`src/data/*.json`,
+> `src/content/**`) managed via `/admin`. The two previously-blank FAQ answers have been
+> drafted (review pending). Testimonials remain placeholders until real quotes arrive. See
+> the [README](../README.md) for build/deploy status and [EDITING-GUIDE](EDITING-GUIDE.md).
 
 ## The practice
 

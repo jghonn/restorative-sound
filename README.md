@@ -7,12 +7,13 @@ clients to inquire and book.
 
 - **Brand / practice name:** Restorative Sound Healing
 - **Facilitator name (used in copy, About, contact):** Abigail Honn
-- **Domain:** `restorativesoundhealing.com` *(working — confirm registration)*
+- **Domain:** `restorativesound.org` *(purchased — ready to connect at deploy)*
 
-> **Status:** v1 built. Astro site with all sections, real copy, optimized images, a
-> Netlify-ready inquiry form, and a **content manager (Decap CMS) at `/admin`** so Abigail
-> can edit text and testimonials herself. Not yet deployed; domain not yet registered.
-> See [Open Questions](#open-questions).
+> **Status:** v1 built and running locally. Astro site with all sections, real copy, optimized
+> images, a Netlify-ready inquiry form, and a **content manager (Decap CMS) at `/admin`** so
+> Abigail can edit text and testimonials herself. **Git repo initialized** (initial commit made).
+> The content manager has been verified locally. Not yet pushed to GitHub or deployed. The
+> domain `restorativesound.org` is purchased — deploy is unblocked. See [Open Questions](#open-questions).
 
 ---
 
@@ -42,6 +43,19 @@ npm run build    # production build → dist/
 npm run preview  # preview the production build
 ```
 
+### Editing content locally (content manager)
+
+```bash
+npm run dev          # terminal 1
+npx decap-server     # terminal 2 (local backend; no login needed)
+```
+Then open **`http://localhost:4321/admin/index.html`** and click **Login**.
+
+- Use the full **`/admin/index.html`** path in dev — the Astro dev server 404s on the bare
+  `/admin/` folder path. On the deployed site, **`/admin/`** works normally.
+- Requires a **git repo** (already initialized) — `decap-server` runs in git mode.
+- Stop either service with **Ctrl+C** in its terminal.
+
 ## Repository structure
 
 ```
@@ -51,7 +65,8 @@ AbigailHonn/
 ├── Docs/
 │   ├── WEBSITE PREP.md            ← original source copy + author's working notes
 │   ├── PROJECT-BRIEF.md           ← audience, goals, sitemap, content status
-│   └── DESIGN-RECOMMENDATIONS.md  ← brand, palette, type, page-by-page layout
+│   ├── DESIGN-RECOMMENDATIONS.md  ← brand, palette, type, page-by-page layout
+│   └── EDITING-GUIDE.md           ← for Abigail: how to use the /admin content manager
 ├── public/
 │   ├── admin/                     ← Decap CMS (content manager UI + config.yml)
 │   ├── uploads/                   ← CMS media folder
@@ -73,10 +88,15 @@ AbigailHonn/
 
 ## Deployment (Netlify)
 
-1. Push this folder to a GitHub repo.
+1. The git repo is already initialized locally (initial commit made). Create an empty GitHub
+   repo, then add it as a remote and push:
+   ```bash
+   git remote add origin https://github.com/<owner>/<repo>.git
+   git push -u origin main
+   ```
 2. In Netlify: **New site from Git** → pick the repo. Build settings auto-detect from `netlify.toml`
    (`npm run build`, publish `dist`).
-3. Add the custom domain `restorativesoundhealing.com` and enable HTTPS.
+3. Add the custom domain `restorativesound.org` and enable HTTPS.
 4. Inquiry submissions appear under **Forms** in the Netlify dashboard (add a notification email).
 5. **Turn on the content manager:** enable Netlify Identity + Git Gateway and invite Abigail's
    email (or switch to the GitHub backend). See [Docs/EDITING-GUIDE.md](Docs/EDITING-GUIDE.md).
@@ -108,23 +128,21 @@ AbigailHonn/
   differentiator, uses her own vocabulary).
 - **Facilitator name:** **Abigail Honn** — used in copy, About, and contact. (The existing
   "Lynn honn" wordmark can be retired or reworked to the new brand; see design docs.)
-- **Domain:** **`restorativesoundhealing.com`** — chosen for `.com` (avoids `.co` typos) and
-  clean spelling. Confirmed *available* at time of research; register to secure.
-  - Optional: grab `restorativesound.co` (available) as a short redirect to the `.com`.
+- **Domain:** **`restorativesound.org`** — **purchased.** (Earlier working candidate was
+  `restorativesoundhealing.com`; the shorter `.org` was chosen and registered instead.)
 
 ## Open questions
 
-1. **Register the domain** — `restorativesoundhealing.com` was available during research; secure it.
-2. **CMS auth backend** — finalize at deploy: Netlify Identity + Git Gateway, or GitHub OAuth (see EDITING-GUIDE.md).
-3. **Wordmark** — the current "Lynn honn" mark doesn't match the new brand name; recreate a "Restorative Sound Healing" wordmark (see design docs).
+1. **CMS auth backend** — finalize at deploy: Netlify Identity + Git Gateway, or GitHub OAuth (see EDITING-GUIDE.md).
+2. **Wordmark** — the current "Lynn honn" mark doesn't match the new brand name; recreate a "Restorative Sound Healing" wordmark (see design docs).
 
 ## Next steps
 
-- [x] Confirm brand name and domain — **Restorative Sound Healing** / `restorativesoundhealing.com`
+- [x] Confirm brand name and domain — **Restorative Sound Healing** / `restorativesound.org`
 - [x] Confirm tech stack — **Astro + Netlify** (free)
 - [x] Scaffold the site and build all pages per the design recommendations
 - [x] Add a content manager (`/admin`) so Abigail can edit text & testimonials
-- [ ] Register `restorativesoundhealing.com` (blocks deploy)
+- [x] Register the domain — **`restorativesound.org`** purchased
 - [ ] Deploy to Netlify + turn on the content manager (see [Deployment](#deployment-netlify))
 - [ ] Create a new "Restorative Sound Healing" wordmark (style ref: `IMG_0991.jpg`) — currently a serif text placeholder
 - [ ] Review the two drafted FAQ answers (were blank in the source)

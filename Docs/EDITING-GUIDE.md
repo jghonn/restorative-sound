@@ -11,7 +11,7 @@ own within a minute or two.
 
 ## How to log in
 
-1. Go to **`https://restorativesoundhealing.com/admin/`** (your real address + `/admin/`).
+1. Go to **`https://restorativesound.org/admin/`** (your real address + `/admin/`).
 2. Log in when prompted (a one-time invite/login is set up at launch).
 3. You'll see the content manager with sections down the left side.
 
@@ -67,9 +67,16 @@ own within a minute or two.
 ```bash
 npm run dev          # terminal 1  → http://localhost:4321
 npx decap-server     # terminal 2  (local backend; no login needed)
-# then open http://localhost:4321/admin/
+# then open http://localhost:4321/admin/index.html  and click "Login"
 ```
 `local_backend: true` in `config.yml` routes the admin to the local files while testing.
+Stop either service with **Ctrl+C** in its terminal.
+
+Gotchas confirmed during setup:
+- **Use the full `/admin/index.html` path in dev.** The Astro dev server returns 404 for the
+  bare `/admin/` folder path; the built/deployed site serves `/admin/` normally.
+- **A git repo is required** — `decap-server` runs in git mode. (Already initialized.)
+- Load the admin via **`localhost`**, not `127.0.0.1` (local backend only trusts `localhost`).
 
 **Turn on the live admin at deploy (needs the GitHub repo):** two options —
 1. **Netlify Identity + Git Gateway** (current `backend: git-gateway`): enable Identity on the
