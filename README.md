@@ -98,8 +98,11 @@ AbigailHonn/
    (`npm run build`, publish `dist`).
 3. Add the custom domain `restorativesound.org` and enable HTTPS.
 4. Inquiry submissions appear under **Forms** in the Netlify dashboard (add a notification email).
-5. **Turn on the content manager:** enable Netlify Identity + Git Gateway and invite Abigail's
-   email (or switch to the GitHub backend). See [Docs/EDITING-GUIDE.md](Docs/EDITING-GUIDE.md).
+5. **Turn on the content manager:** create a free [DecapBridge](https://decapbridge.com) site
+   linked to `jghonn/restorative-sound`, paste its site ID into `public/admin/config.yml`
+   (replacing `DECAPBRIDGE_SITE_ID`), and invite Abigail's email from the DecapBridge
+   dashboard. (Netlify Identity/Git Gateway are deprecated — not used.) See
+   [Docs/EDITING-GUIDE.md](Docs/EDITING-GUIDE.md).
 
 ## Documentation
 
@@ -130,11 +133,13 @@ AbigailHonn/
   "Lynn honn" wordmark can be retired or reworked to the new brand; see design docs.)
 - **Domain:** **`restorativesound.org`** — **purchased.** (Earlier working candidate was
   `restorativesoundhealing.com`; the shorter `.org` was chosen and registered instead.)
+- **CMS auth: DecapBridge** — free hosted email+password login for `/admin`, no GitHub
+  account needed for Abigail. Chosen over Netlify Identity + Git Gateway (deprecated by
+  Netlify) and the GitHub OAuth backend (would require Abigail to manage a GitHub account).
 
 ## Open questions
 
-1. **CMS auth backend** — finalize at deploy: Netlify Identity + Git Gateway, or GitHub OAuth (see EDITING-GUIDE.md).
-2. **Wordmark** — the current "Lynn honn" mark doesn't match the new brand name; recreate a "Restorative Sound Healing" wordmark (see design docs).
+1. **Wordmark** — the current "Lynn honn" mark doesn't match the new brand name; recreate a "Restorative Sound Healing" wordmark (see design docs).
 
 ## Next steps
 

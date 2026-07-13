@@ -1,12 +1,26 @@
 # Decap CMS configuration — the admin interface at /admin
 # --------------------------------------------------------
 # Backend: how the CMS saves changes.
-#   - git-gateway works once the site is deployed to Netlify with Netlify Identity.
-#   - Alternatively switch to the GitHub backend (see Docs/EDITING-GUIDE.md).
-# This is finalized at deploy time (needs the GitHub repo name).
+#   DecapBridge (https://decapbridge.com) hosts the login + git-gateway service.
+#   (Netlify Identity / Git Gateway are deprecated — do not use for new sites.)
+#   Editors log in with email + password; commits land in the GitHub repo via the
+#   fine-grained access token registered in the DecapBridge dashboard.
+# TODO before launch: replace DECAPBRIDGE_SITE_ID with the site ID from the
+# DecapBridge dashboard (Dashboard → your site → config template).
 backend:
   name: git-gateway
+  repo: jghonn/restorative-sound
   branch: main
+  identity_url: https://auth.decapbridge.com/sites/DECAPBRIDGE_SITE_ID
+  gateway_url: https://gateway.decapbridge.com
+
+  # Attribute each CMS edit to the editor who made it.
+  commit_messages:
+    create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    delete: Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    uploadMedia: Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    deleteMedia: Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
 
 # Lets you preview/edit the admin locally before deploy:
 #   1) npm run dev         (in one terminal)

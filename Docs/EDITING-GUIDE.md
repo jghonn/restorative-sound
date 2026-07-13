@@ -12,8 +12,12 @@ own within a minute or two.
 ## How to log in
 
 1. Go to **`https://restorativesound.org/admin/`** (your real address + `/admin/`).
-2. Log in when prompted (a one-time invite/login is set up at launch).
+2. Log in with your **email and password**. (At launch you'll get a one-time email
+   invitation — click the link in it to set your password.)
 3. You'll see the content manager with sections down the left side.
+
+> Forgot your password? Use the "forgot password" link on the login screen — a reset
+> email arrives within a minute.
 
 ## What you can edit
 
@@ -78,13 +82,20 @@ Gotchas confirmed during setup:
 - **A git repo is required** — `decap-server` runs in git mode. (Already initialized.)
 - Load the admin via **`localhost`**, not `127.0.0.1` (local backend only trusts `localhost`).
 
-**Turn on the live admin at deploy (needs the GitHub repo):** two options —
-1. **Netlify Identity + Git Gateway** (current `backend: git-gateway`): enable Identity on the
-   Netlify site, enable Git Gateway, and invite Abigail's email. Simplest for a non-technical user.
-2. **GitHub backend + OAuth:** set `backend: { name: github, repo: OWNER/REPO, branch: main }`
-   and configure an OAuth app (or a hosted OAuth relay). Avoids Netlify Identity.
+**Live admin auth: DecapBridge** (decided 2026-07; Netlify Identity/Git Gateway are
+deprecated and were ruled out). [DecapBridge](https://decapbridge.com) is a free hosted
+login + git-gateway service built for Decap CMS — editors sign in with email + password,
+no GitHub account needed.
 
-Decide at deploy time; both are free. See README → Deployment.
+Setup (one-time, in the DecapBridge dashboard):
+1. Create a DecapBridge account and **Add a site**, linking `jghonn/restorative-sound`
+   with a GitHub **fine-grained access token** (read/write on *Contents*; login URL
+   `https://restorativesound.org/admin/index.html`).
+2. Copy the **site ID** into `public/admin/config.yml` (`identity_url`) — a
+   `DECAPBRIDGE_SITE_ID` placeholder marks the spot.
+3. Invite Abigail's email under **Manage collaborators**.
+
+See README → Deployment.
 
 **Enabling new-photo uploads (future):** point offering/testimonial image fields at the
 `media_folder` (`public/uploads`) and render those paths directly. Kept off for v1 so the
