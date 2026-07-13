@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import logo from '../assets/images/lynn-honn-logo.png';
 
 const links = [
   { href: '#offerings', label: 'Offerings' },
@@ -12,7 +13,7 @@ const links = [
 <header class="site-header" data-header>
   <div class="container bar">
     <a class="wordmark" href="#top" aria-label={`${site.brand} — home`}>
-      Restorative <span>Sound Healing</span>
+      <span class="logo" style={`--logo-url: url(${logo.src})`}></span>
     </a>
 
     <nav class="nav" aria-label="Primary">
@@ -39,20 +40,19 @@ const links = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-block: 1.15rem;
+    padding-block: 0.75rem;
   }
-  .wordmark {
-    font-family: var(--font-serif);
-    font-weight: 600;
-    font-size: 1.35rem;
-    line-height: 1;
-    letter-spacing: 0.01em;
-    color: var(--bone);
-    text-shadow: 0 1px 12px rgba(43, 39, 35, 0.4);
-  }
-  .wordmark span {
-    font-style: italic;
-    font-weight: 500;
+  /* The wordmark image is monochrome-on-transparency, used as a CSS mask so its
+     color can shift with the header state (bone over the hero, espresso when scrolled). */
+  .wordmark .logo {
+    display: block;
+    height: 3rem;
+    aspect-ratio: 500 / 269;
+    background-color: var(--bone);
+    -webkit-mask: var(--logo-url) no-repeat center / contain;
+    mask: var(--logo-url) no-repeat center / contain;
+    filter: drop-shadow(0 1px 10px rgba(43, 39, 35, 0.35));
+    transition: background-color 0.3s ease, filter 0.3s ease;
   }
 
   .nav-menu {
@@ -115,6 +115,10 @@ const links = [
     color: var(--espresso);
     text-shadow: none;
   }
+  .site-header.is-scrolled .wordmark .logo {
+    background-color: var(--espresso);
+    filter: none;
+  }
   .site-header.is-scrolled .nav-menu a:hover {
     color: var(--accent);
   }
@@ -129,6 +133,9 @@ const links = [
   }
 
   @media (max-width: 760px) {
+    .wordmark .logo {
+      height: 2.5rem;
+    }
     .nav-toggle {
       display: block;
       position: relative;
