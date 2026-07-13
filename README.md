@@ -98,11 +98,10 @@ AbigailHonn/
    (`npm run build`, publish `dist`).
 3. Add the custom domain `restorativesound.org` and enable HTTPS.
 4. Inquiry submissions appear under **Forms** in the Netlify dashboard (add a notification email).
-5. **Turn on the content manager:** create a free [DecapBridge](https://decapbridge.com) site
-   linked to `jghonn/restorative-sound`, paste its site ID into `public/admin/config.yml`
-   (replacing `DECAPBRIDGE_SITE_ID`), and invite Abigail's email from the DecapBridge
-   dashboard. (Netlify Identity/Git Gateway are deprecated — not used.) See
-   [Docs/EDITING-GUIDE.md](Docs/EDITING-GUIDE.md).
+5. **Turn on the content manager:** the [DecapBridge](https://decapbridge.com) site is
+   created and wired into `public/admin/config.yml` — just invite Abigail's email from the
+   DecapBridge dashboard (**Manage collaborators**). (Netlify Identity/Git Gateway are
+   deprecated — not used.) See [Docs/EDITING-GUIDE.md](Docs/EDITING-GUIDE.md).
 
 ## Documentation
 

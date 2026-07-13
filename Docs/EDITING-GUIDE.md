@@ -87,13 +87,16 @@ deprecated and were ruled out). [DecapBridge](https://decapbridge.com) is a free
 login + git-gateway service built for Decap CMS — editors sign in with email + password,
 no GitHub account needed.
 
-Setup (one-time, in the DecapBridge dashboard):
-1. Create a DecapBridge account and **Add a site**, linking `jghonn/restorative-sound`
+Setup (done 2026-07-13, in the DecapBridge dashboard):
+1. DecapBridge account created (Jason's); site added, linking `jghonn/restorative-sound`
    with a GitHub **fine-grained access token** (read/write on *Contents*; login URL
    `https://restorativesound.org/admin/index.html`).
-2. Copy the **site ID** into `public/admin/config.yml` (`identity_url`) — a
-   `DECAPBRIDGE_SITE_ID` placeholder marks the spot.
-3. Invite Abigail's email under **Manage collaborators**.
+2. The site ID is wired into `public/admin/config.yml` (`identity_url`).
+3. Remaining: invite Abigail's email under **Manage collaborators** once the site is live.
+
+> If the GitHub token ever expires or is revoked, CMS publishing stops working (login
+> still succeeds) — generate a new fine-grained token and update it in the DecapBridge
+> dashboard.
 
 See README → Deployment.
 
