@@ -4,7 +4,7 @@ import general from './general.json';
 
 export const site = {
   // Fixed identity — change intentionally in code, not via the CMS.
-  brand: 'Restorative Sound Healing',
+  brand: 'Lynn Honn | Restorative Sound',
   facilitator: 'Abigail Honn',
   domain: 'restorativesound.org',
   url: 'https://restorativesound.org',

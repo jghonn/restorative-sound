@@ -1,6 +1,6 @@
-# Design Recommendations — Restorative Sound Healing
+# Design Recommendations — Lynn Honn | Restorative Sound
 
-> **Brand / practice name:** Restorative Sound Healing · **Facilitator:** Abigail Honn
+> **Brand / practice name:** Lynn Honn | Restorative Sound · **Facilitator:** Abigail Honn
 
 > **Implementation status:** This system is built and live. Implemented: the palette (as CSS
 > variables in `src/styles/global.css` — section backgrounds are now CMS-editable, defaulting
@@ -8,8 +8,8 @@
 > the full single-page layout, section by section. The wordmark is the reworked
 > **"Lynn honn · Restorative Sound"** logo (wide + stacked lockups) in the header, hero, and
 > footer, rendered via CSS mask so it recolors per location; all photos and logos are
-> CMS-managed. Note: the logo's naming differs from the "Restorative Sound Healing" text
-> brand — see README → Open questions. See [README](../README.md).
+> CMS-managed. The brand name is now officially **Lynn Honn | Restorative Sound**, matching
+> the logo. See [README](../README.md).
 
 Derived from the existing logo wordmark and the WebReady photography. The whole visual
 system already exists *in the images* — warm, earthy, quiet, natural. The site's job is to
@@ -66,11 +66,10 @@ Letter-spacing slightly loose on small caps / labels for an editorial feel.
 
 - Lead the **hero** with `IMG_0753` (client + bowls, session in action) or `IMG_3792`
   (bowls on linen) as a full-bleed, softly darkened background behind the wordmark + tagline.
-- **Wordmark:** the existing `IMG_0991` reads "Lynn honn" and no longer matches the brand
-  name. Recreate a **"Restorative Sound Healing"** wordmark in the chosen display serif
-  (italic, to echo the old mark's feel), delivered as transparent SVG so it scales crisply
-  on any background. Suggested lockup: "Restorative Sound Healing" wordmark with a small
-  descriptor beneath, and "Abigail Honn" appearing as the facilitator name in copy/About.
+- **Wordmark:** resolved — the "Lynn honn" mark was reworked into the
+  **"Lynn honn · Restorative Sound"** logo (wide + stacked transparent PNG lockups,
+  recolored per location via CSS mask), and the brand name was aligned to it.
+  "Abigail Honn" remains the facilitator name in copy/About.
 - Map imagery to sections: sculpture `IMG_0966` → Postpartum; `IMG_0918` → Private/process;
   `IMG_0978` → About; `FullSizeRender` (hand + chime) → The Restorative Response or as texture.
 - Treatment: keep the natural VSCO grade, apply subtle warm overlays for text legibility,

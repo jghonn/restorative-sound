@@ -1,6 +1,6 @@
-# Project Brief — Restorative Sound Healing
+# Project Brief — Lynn Honn | Restorative Sound
 
-> **Brand / practice name:** Restorative Sound Healing · **Facilitator:** Abigail Honn ·
+> **Brand / practice name:** Lynn Honn | Restorative Sound · **Facilitator:** Abigail Honn ·
 > **Live at:** [restorativesound.org](https://restorativesound.org)
 
 > **Update:** The site is **live** (Astro + Decap CMS + DecapBridge auth, hosted on Netlify
@@ -12,7 +12,7 @@
 
 ## The practice
 
-**Restorative Sound Healing** is the practice of **Abigail Honn**, offering
+**Lynn Honn | Restorative Sound** is the practice of **Abigail Honn**, offering
 **trauma-informed sound facilitation** — restorative sound baths and
 stillness experiences designed to support nervous-system regulation, deep rest, and
 recovery. Her background: guided backpacking retreats, a degree in biology & ecology, and

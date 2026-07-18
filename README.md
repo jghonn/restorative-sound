@@ -1,11 +1,11 @@
-# Restorative Sound Healing (Website Project)
+# Lynn Honn | Restorative Sound (Website Project)
 
-A marketing website for **Restorative Sound Healing** — the practice of **Abigail Honn**, a
-trauma-informed sound facilitator offering restorative sound-bath and stillness experiences.
-The site introduces her practice, describes her offerings, and provides a way for prospective
-clients to inquire and book.
+A marketing website for **Lynn Honn | Restorative Sound** — the practice of **Abigail
+Honn**, a trauma-informed sound facilitator offering restorative sound-bath and stillness
+experiences. The site introduces her practice, describes her offerings, and provides a way
+for prospective clients to inquire and book.
 
-- **Brand / practice name:** Restorative Sound Healing
+- **Brand / practice name:** Lynn Honn | Restorative Sound
 - **Facilitator name (used in copy, About, contact):** Abigail Honn
 - **Live site:** **[restorativesound.org](https://restorativesound.org)**
 - **Repo:** `github.com/jghonn/restorative-sound` · **Hosting:** Netlify (continuous deploy from `main`)
@@ -139,8 +139,10 @@ The pipeline is fully automated — there are no manual deploy steps:
 
 ## Decisions locked
 
-- **Brand / practice name:** **Restorative Sound Healing** (evocative, keeps the "sound"
-  differentiator, uses her own vocabulary).
+- **Brand / practice name:** **Lynn Honn | Restorative Sound** (decided 2026-07-18) —
+  keeps the established "Lynn honn" mark and pairs it with the "restorative sound"
+  descriptor, matching the logo and domain. (Earlier working name was "Restorative Sound
+  Healing.")
 - **Facilitator name:** **Abigail Honn** — used in copy, About, and contact.
 - **Logo:** the reworked **"Lynn honn · Restorative Sound"** mark (wide + stacked lockups) is
   used in the header, hero, and footer — CMS-swappable via three logo slots in General &
@@ -154,14 +156,11 @@ The pipeline is fully automated — there are no manual deploy steps:
 
 ## Open questions
 
-1. **Brand naming split** — the logo reads "Lynn honn · Restorative Sound" while the site's
-   text (page title, meta, copyright, copy) says "Restorative Sound Healing." Decide the
-   official name and align `site.ts` + copy if needed.
-2. **Session lengths / pricing / service area** — still not published; add when Abigail is ready.
+1. **Session lengths / pricing / service area** — still not published; add when Abigail is ready.
 
 ## Launch checklist (done)
 
-- [x] Confirm brand name and domain — **Restorative Sound Healing** / `restorativesound.org`
+- [x] Confirm brand name and domain — **Lynn Honn | Restorative Sound** / `restorativesound.org`
 - [x] Confirm tech stack — **Astro + Netlify** (free)
 - [x] Scaffold the site and build all pages per the design recommendations
 - [x] Add a content manager (`/admin`) so Abigail can edit text & testimonials

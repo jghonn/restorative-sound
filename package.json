@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "description": "Marketing website for Restorative Sound Healing — the practice of Abigail Honn.",
+  "description": "Marketing website for Lynn Honn | Restorative Sound — the practice of Abigail Honn.",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

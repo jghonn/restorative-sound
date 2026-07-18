@@ -14,8 +14,10 @@ interface Props {
   description?: string;
 }
 
+// The brand already contains the descriptor ("… | Restorative Sound"),
+// so the default title is the brand alone.
 const {
-  title = `${site.brand} — ${site.descriptor}`,
+  title = site.brand,
   description = site.tagline,
 } = Astro.props;
 
