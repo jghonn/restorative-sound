@@ -46,6 +46,7 @@ const offerings = (await getCollection('offerings')).sort(
                 widths={[360, 560, 760]}
                 sizes="(max-width: 720px) 90vw, 32vw"
                 loading="lazy"
+                style={`object-position: center ${o.data.imagePosition};`}
               />
             </div>
             <div class="card-body">

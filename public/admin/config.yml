@@ -109,6 +109,14 @@ collections:
       - { name: title, label: Title, widget: string }
       - { name: meta, label: "Meta line (e.g. In-home · ~1 hour)", widget: string, required: false }
       - { name: image, label: Photo, widget: image }
+      - name: imagePosition
+        label: "Photo alignment (which part of the photo stays visible in the card)"
+        widget: select
+        default: center
+        options:
+          - { label: "Top", value: top }
+          - { label: "Center", value: center }
+          - { label: "Bottom", value: bottom }
       - { name: alt, label: "Photo description (for accessibility)", widget: string }
       - { name: description, label: Description, widget: text }
 

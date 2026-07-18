@@ -11,6 +11,8 @@ const offerings = defineCollection({
     // Media-library path (/src/assets/uploads/...); legacy keys
     // (postpartum/christian/private) still resolve in Offerings.astro.
     image: z.string(),
+    // Which part of the photo stays visible in the card's 4:3 crop.
+    imagePosition: z.enum(['top', 'center', 'bottom']).default('center'),
     alt: z.string(),
     description: z.string(),
   }),
