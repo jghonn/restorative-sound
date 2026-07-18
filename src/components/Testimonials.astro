@@ -2,6 +2,8 @@
 // Testimonials — editable via /admin → Testimonials.
 // Published entries are shown; until any are published, placeholders display.
 import { getCollection } from 'astro:content';
+import theme from '../data/theme.json';
+import { sectionProps } from '../utils/theme';
 
 const all = (await getCollection('testimonials')).sort(
   (a, b) => a.data.order - b.data.order
@@ -11,7 +13,7 @@ const testimonials = published.length ? published : all;
 const showingPlaceholders = published.length === 0;
 ---
 
-<section class="section section--linen" id="testimonials">
+<section {...sectionProps(theme.testimonials, '#ede4d5')} id="testimonials">
   <div class="container">
     <header class="head reveal">
       <p class="eyebrow">Testimonials</p>

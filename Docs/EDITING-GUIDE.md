@@ -25,7 +25,8 @@ own within a minute or two.
 |---------|---------------|
 | **Site Settings & Copy → General & Contact** | Tagline, email, phone, Instagram link |
 | **Site Settings & Copy → Home Page Copy** | Intro paragraphs, the Restorative Response text, benefit chips, Offerings heading |
-| **Site Settings & Copy → About** | Your About heading, opening line, and story paragraphs |
+| **Site Settings & Copy → About** | Your profile photo, About heading, opening line, and story paragraphs |
+| **Site Settings & Copy → Section Backgrounds** | The background color of each page band — the brand palette hexes are listed right in each field. Dark colors switch that band to light text automatically. |
 | **Offerings** | The three offering cards — title, description, meta line, and which photo |
 | **FAQ** | Questions & answers — add, edit, reorder, or hide any |
 | **Testimonials** | Add real testimonials and turn them on |

@@ -78,6 +78,18 @@ collections:
           - { name: offeringsHeading, label: "Offerings — heading", widget: string }
           - { name: offeringsIntro, label: "Offerings — intro line", widget: text }
 
+      - name: theme
+        label: "Section Backgrounds"
+        file: "src/data/theme.json"
+        fields:
+          - &bg-intro { name: intro, label: "Intro band", widget: color, allowInput: true, hint: "Brand palette — Bone: #f6f1e8 · Linen: #ede4d5 · Espresso: #3e2c22. Dark colors switch the band to light text automatically." }
+          - { <<: *bg-intro, name: response, label: "The Restorative Response band" }
+          - { <<: *bg-intro, name: offerings, label: "Offerings band" }
+          - { <<: *bg-intro, name: about, label: "About band" }
+          - { <<: *bg-intro, name: testimonials, label: "Testimonials band" }
+          - { <<: *bg-intro, name: faq, label: "FAQ band" }
+          - { <<: *bg-intro, name: contact, label: "Contact band" }
+
       - name: about
         label: "About"
         file: "src/data/about.json"

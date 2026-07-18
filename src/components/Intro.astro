@@ -1,9 +1,11 @@
 ---
 // Homepage introduction — editable via /admin → Home Page Copy.
 import home from '../data/home.json';
+import theme from '../data/theme.json';
+import { sectionProps } from '../utils/theme';
 ---
 
-<section class="section section--bone" id="intro">
+<section {...sectionProps(theme.intro, '#f6f1e8')} id="intro">
   <div class="container">
     <div class="measure intro-inner reveal">
       <p class="eyebrow">A return to true rest</p>

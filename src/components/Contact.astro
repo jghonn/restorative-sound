@@ -1,8 +1,10 @@
 ---
 import { site } from '../data/site';
+import theme from '../data/theme.json';
+import { sectionProps } from '../utils/theme';
 ---
 
-<section class="section section--dark" id="contact">
+<section {...sectionProps(theme.contact, '#3e2c22')} id="contact">
   <div class="container grid">
     <div class="intro reveal">
       <p class="eyebrow">Contact / Inquiry</p>

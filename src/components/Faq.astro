@@ -1,13 +1,15 @@
 ---
 // FAQ — editable via /admin → FAQ. Drafts are hidden; entries sort by "order".
 import { getCollection } from 'astro:content';
+import theme from '../data/theme.json';
+import { sectionProps } from '../utils/theme';
 
 const faqs = (await getCollection('faq'))
   .filter((f) => !f.data.draft)
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section class="section section--bone" id="faq">
+<section {...sectionProps(theme.faq, '#f6f1e8')} id="faq">
   <div class="container">
     <header class="head reveal">
       <p class="eyebrow">Questions</p>

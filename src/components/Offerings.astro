@@ -5,6 +5,8 @@ import postpartumImg from '../assets/images/IMG_0966.jpg';
 import christianImg from '../assets/images/IMG_3792.jpg';
 import privateImg from '../assets/images/IMG_0918_VSCO.jpg';
 import home from '../data/home.json';
+import theme from '../data/theme.json';
+import { sectionProps } from '../utils/theme';
 
 // Editable via /admin → Offerings. The photo is a media-library upload
 // (src/assets/uploads), resolved here so it stays in Astro's image pipeline.
@@ -27,7 +29,7 @@ const offerings = (await getCollection('offerings')).sort(
 );
 ---
 
-<section class="section section--bone" id="offerings">
+<section {...sectionProps(theme.offerings, '#f6f1e8')} id="offerings">
   <div class="container">
     <header class="head reveal">
       <p class="eyebrow">Offerings</p>

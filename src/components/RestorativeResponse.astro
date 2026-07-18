@@ -2,11 +2,13 @@
 import { Image } from 'astro:assets';
 import img from '../assets/images/FullSizeRender_VSCO.jpg';
 import home from '../data/home.json';
+import theme from '../data/theme.json';
+import { sectionProps } from '../utils/theme';
 
 const benefits = home.benefits;
 ---
 
-<section class="section section--linen" id="response">
+<section {...sectionProps(theme.response, '#ede4d5')} id="response">
   <div class="container grid">
     <div class="copy reveal">
       <p class="eyebrow">The Restorative Response</p>

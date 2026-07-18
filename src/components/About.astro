@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import defaultPortrait from '../assets/images/IMG_0978.jpg';
 import { site } from '../data/site';
 import about from '../data/about.json';
+import theme from '../data/theme.json';
+import { sectionProps } from '../utils/theme';
 
 // The portrait is CMS-managed (admin → About). Uploads land in
 // src/assets/uploads and resolve through Astro's image pipeline, with the
@@ -15,7 +17,7 @@ const portrait = uploads[about.photo]?.default ?? defaultPortrait;
 const portraitAlt = about.photoAlt || `Portrait of ${site.facilitator}`;
 ---
 
-<section class="section section--linen" id="about">
+<section {...sectionProps(theme.about, '#ede4d5')} id="about">
   <div class="container grid">
     <figure class="portrait reveal">
       <Image
