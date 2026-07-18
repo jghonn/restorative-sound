@@ -52,8 +52,10 @@ own within a minute or two.
 
 - **Every change is saved safely.** Nothing is ever lost — the site keeps a full history and
   any change can be undone.
-- **Photos:** the three offering photos can be switched between the existing images. Adding
-  brand-new photos is a small setup we can turn on later (see the note for developers below).
+- **Photos:** the **hero (top banner) photo** can be changed — go to **Site Settings & Copy →
+  Home Page Copy → Hero — background photo** and upload or pick an image. Large originals are
+  fine; the site automatically optimizes them at publish. Update the photo description field
+  alongside it. The three offering photos still switch between the existing curated images.
 - **Two FAQ answers were drafted for you** ("What can I expect…" and "How does sound
   interact…") because the original notes left them blank — please read and tweak them to
   sound like you.
@@ -100,6 +102,8 @@ Setup (done 2026-07-13, in the DecapBridge dashboard):
 
 See README → Deployment.
 
-**Enabling new-photo uploads (future):** point offering/testimonial image fields at the
-`media_folder` (`public/uploads`) and render those paths directly. Kept off for v1 so the
-curated, optimized photography stays consistent.
+**CMS photo uploads:** `media_folder` is `src/assets/uploads` (not `public/`), so every
+upload goes through Astro's image pipeline. Components resolve the stored path
+(`/src/assets/uploads/...`) via `import.meta.glob` — see the hero photo in
+`src/components/Hero.astro` for the pattern. Wired up for the hero background; to make
+another image editable, switch its field to `widget: image` and resolve the same way.

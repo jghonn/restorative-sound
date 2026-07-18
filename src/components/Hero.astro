@@ -1,15 +1,29 @@
 ---
 import { Image } from 'astro:assets';
-import heroImg from '../assets/images/IMG_0753_VSCO.jpg';
+import defaultHero from '../assets/images/IMG_0753_VSCO.jpg';
 import logo from '../assets/images/lynn-honn-logo-centered.png';
 import { site } from '../data/site';
+import home from '../data/home.json';
+
+// The hero photo is CMS-managed (admin → Home Page Copy → Hero background photo).
+// Uploads land in src/assets/uploads; resolving them through import.meta.glob
+// keeps them in Astro's image pipeline. Falls back to the original hero photo
+// if the configured file is missing from the repo.
+const uploads = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/uploads/*',
+  { eager: true }
+);
+const heroImg = uploads[home.heroImage]?.default ?? defaultHero;
+const heroAlt =
+  home.heroAlt ||
+  'A person resting with an eye pillow beside crystal singing bowls during a sound session';
 ---
 
 <section class="hero" id="top">
   <Image
     class="hero-bg"
     src={heroImg}
-    alt="A person resting with an eye pillow beside crystal singing bowls during a sound session"
+    alt={heroAlt}
     widths={[768, 1280, 1920]}
     sizes="100vw"
     loading="eager"

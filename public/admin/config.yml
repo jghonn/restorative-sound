@@ -33,8 +33,11 @@ local_backend: true
 site_url: https://restorativesound.org
 
 # Where uploaded images are stored / referenced.
-media_folder: "public/uploads"
-public_folder: "/uploads"
+# Uploads land in src/assets/uploads so Astro's image pipeline optimizes them at
+# build time (responsive sizes + webp). public_folder mirrors the repo path —
+# components resolve these values via import.meta.glob('/src/assets/uploads/*').
+media_folder: "src/assets/uploads"
+public_folder: "/src/assets/uploads"
 
 collections:
   # ---- Singletons: site-wide settings & section copy ----
@@ -59,6 +62,8 @@ collections:
         label: "Home Page Copy"
         file: "src/data/home.json"
         fields:
+          - { name: heroImage, label: "Hero — background photo", widget: image }
+          - { name: heroAlt, label: "Hero — photo description (for accessibility)", widget: string }
           - { name: introLead, label: "Intro — opening line", widget: text }
           - { name: introBody, label: "Intro — paragraph", widget: text }
           - { name: responseHeading, label: "The Restorative Response — heading", widget: text }
