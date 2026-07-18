@@ -52,10 +52,11 @@ own within a minute or two.
 
 - **Every change is saved safely.** Nothing is ever lost — the site keeps a full history and
   any change can be undone.
-- **Photos:** the **hero (top banner) photo** can be changed — go to **Site Settings & Copy →
-  Home Page Copy → Hero — background photo** and upload or pick an image. Large originals are
-  fine; the site automatically optimizes them at publish. Update the photo description field
-  alongside it. The three offering photos still switch between the existing curated images.
+- **Photos:** the **hero (top banner) photo**, your **About profile photo**, and each
+  **offering's photo** are all editable — each has a photo field where you upload a new
+  image or pick one already in the library. Large originals are fine; the site
+  automatically optimizes them at publish. Please update the photo description
+  (accessibility) field whenever you change a photo.
 - **Two FAQ answers were drafted for you** ("What can I expect…" and "How does sound
   interact…") because the original notes left them blank — please read and tweak them to
   sound like you.
@@ -105,5 +106,7 @@ See README → Deployment.
 **CMS photo uploads:** `media_folder` is `src/assets/uploads` (not `public/`), so every
 upload goes through Astro's image pipeline. Components resolve the stored path
 (`/src/assets/uploads/...`) via `import.meta.glob` — see the hero photo in
-`src/components/Hero.astro` for the pattern. Wired up for the hero background; to make
-another image editable, switch its field to `widget: image` and resolve the same way.
+`src/components/Hero.astro` for the pattern. Wired up for the hero background, the About
+portrait, and offering photos (Offerings.astro also maps the legacy select values
+postpartum/christian/private); to make another image editable, switch its field to
+`widget: image` and resolve the same way.

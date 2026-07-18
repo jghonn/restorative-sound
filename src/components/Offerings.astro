@@ -6,12 +6,21 @@ import christianImg from '../assets/images/IMG_3792.jpg';
 import privateImg from '../assets/images/IMG_0918_VSCO.jpg';
 import home from '../data/home.json';
 
-// Editable via /admin → Offerings. Photo choice maps to a bundled, optimized image.
-const imageMap = {
+// Editable via /admin → Offerings. The photo is a media-library upload
+// (src/assets/uploads), resolved here so it stays in Astro's image pipeline.
+const uploads = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/uploads/*',
+  { eager: true }
+);
+// Legacy values from the pre-media-library select widget, and the fallback
+// if a configured upload has been removed from the repo.
+const legacyMap: Record<string, ImageMetadata> = {
   postpartum: postpartumImg,
   christian: christianImg,
   private: privateImg,
 };
+const resolveImage = (value: string) =>
+  uploads[value]?.default ?? legacyMap[value] ?? christianImg;
 
 const offerings = (await getCollection('offerings')).sort(
   (a, b) => a.data.order - b.data.order
@@ -32,7 +41,7 @@ const offerings = (await getCollection('offerings')).sort(
           <article class="card reveal">
             <div class="card-media">
               <Image
-                src={imageMap[o.data.image]}
+                src={resolveImage(o.data.image)}
                 alt={o.data.alt}
                 widths={[360, 560, 760]}
                 sizes="(max-width: 720px) 90vw, 32vw"

@@ -82,6 +82,8 @@ collections:
         label: "About"
         file: "src/data/about.json"
         fields:
+          - { name: photo, label: "Profile photo", widget: image }
+          - { name: photoAlt, label: "Photo description (for accessibility)", widget: string }
           - { name: heading, label: Heading, widget: string }
           - { name: lead, label: "Opening line", widget: text }
           - name: paragraphs
@@ -106,13 +108,7 @@ collections:
       - { name: order, label: "Order (lower shows first)", widget: number, default: 1, value_type: int }
       - { name: title, label: Title, widget: string }
       - { name: meta, label: "Meta line (e.g. In-home · ~1 hour)", widget: string, required: false }
-      - name: image
-        label: Photo
-        widget: select
-        options:
-          - { label: "Mother & child sculpture", value: postpartum }
-          - { label: "Crystal singing bowls", value: christian }
-          - { label: "Hands playing a bowl", value: private }
+      - { name: image, label: Photo, widget: image }
       - { name: alt, label: "Photo description (for accessibility)", widget: string }
       - { name: description, label: Description, widget: text }
 

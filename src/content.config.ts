@@ -8,8 +8,9 @@ const offerings = defineCollection({
     order: z.number().default(0),
     title: z.string(),
     meta: z.string().optional().default(''),
-    // Which bundled photo to show (keeps Astro image optimization).
-    image: z.enum(['postpartum', 'christian', 'private']),
+    // Media-library path (/src/assets/uploads/...); legacy keys
+    // (postpartum/christian/private) still resolve in Offerings.astro.
+    image: z.string(),
     alt: z.string(),
     description: z.string(),
   }),
