@@ -51,8 +51,9 @@ collections:
         label: "General & Contact"
         file: "src/data/general.json"
         fields:
-          - { name: logoWide, label: "Logo — wide (header)", widget: image, hint: "Transparent-background PNG, single color. The site recolors it to match where it appears (cream over photos, dark on light backgrounds)." }
-          - { name: logoStacked, label: "Logo — stacked (hero & footer)", widget: image, hint: "Same requirements as the wide logo; this variant is the taller, centered lockup." }
+          - { name: logoWide, label: "Logo — header", widget: image, hint: "Transparent-background PNG, single color. The site recolors it to match where it appears (cream over photos, dark on light backgrounds)." }
+          - { name: logoHero, label: "Logo — hero (top banner)", widget: image, hint: "Same requirements as the header logo." }
+          - { name: logoFooter, label: "Logo — footer", widget: image, hint: "Same requirements as the header logo." }
           - { name: descriptor, label: "Short descriptor (near logo)", widget: string }
           - { name: tagline, label: "Tagline", widget: text }
           - { name: email, label: "Email", widget: string }

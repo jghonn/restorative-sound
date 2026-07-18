@@ -12,7 +12,8 @@ export const site = {
   // Editable via /admin → Site Settings → General & Contact.
   // Logo paths resolve through src/utils/uploads.ts (media library).
   logoWide: general.logoWide,
-  logoStacked: general.logoStacked,
+  logoHero: general.logoHero,
+  logoFooter: general.logoFooter,
   descriptor: general.descriptor,
   tagline: general.tagline,
   email: general.email,

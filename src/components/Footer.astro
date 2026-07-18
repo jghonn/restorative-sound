@@ -3,8 +3,8 @@ import { site } from '../data/site';
 import defaultLogo from '../assets/images/lynn-honn-logo-centered.png';
 import { resolveUpload } from '../utils/uploads';
 
-// CMS-managed (admin → General & Contact → Logo — stacked).
-const logo = resolveUpload(site.logoStacked, defaultLogo);
+// CMS-managed (admin → General & Contact → Logo — footer).
+const logo = resolveUpload(site.logoFooter, defaultLogo);
 
 const links = [
   { href: '#offerings', label: 'Offerings' },

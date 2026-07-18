@@ -7,9 +7,9 @@ import home from '../data/home.json';
 import { resolveUpload } from '../utils/uploads';
 
 // Photo and logo are CMS-managed (admin → Home Page Copy → Hero background
-// photo; admin → General & Contact → Logo — stacked), with bundled fallbacks.
+// photo; admin → General & Contact → Logo — hero), with bundled fallbacks.
 const heroImg = resolveUpload(home.heroImage, defaultHero);
-const logo = resolveUpload(site.logoStacked, defaultLogo);
+const logo = resolveUpload(site.logoHero, defaultLogo);
 const heroAlt =
   home.heroAlt ||
   'A person resting with an eye pillow beside crystal singing bowls during a sound session';
