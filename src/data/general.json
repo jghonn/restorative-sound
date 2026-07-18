@@ -1,11 +1,11 @@
 {
-  "logoWide": "/src/assets/uploads/lynn-honn-logo-wide.png",
   "logoHero": "/src/assets/uploads/lynn-honn-logo-centered.png",
   "logoFooter": "/src/assets/uploads/lynn-honn-logo-centered.png",
-  "descriptor": "restorative sound ",
-  "tagline": "Supporting individuals through seasons of depletion, transition, and healing with restorative sound and stillness.",
-  "email": "abigail.l.honn@gmail.com",
   "phone": "208-789-7178",
+  "tagline": "Supporting individuals through seasons of depletion, transition, and healing",
+  "descriptor": "rest . stillness . renewal ",
+  "instagram": "",
   "phoneHref": "+12087897178",
-  "instagram": ""
+  "email": "abigail.l.honn@gmail.com",
+  "logoWide": "/src/assets/uploads/lynn-honn-logo-centered.png"
 }
