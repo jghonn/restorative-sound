@@ -78,6 +78,13 @@ collections:
           - { name: offeringsHeading, label: "Offerings — heading", widget: string }
           - { name: offeringsIntro, label: "Offerings — intro line", widget: text }
 
+      - name: contact
+        label: "Contact"
+        file: "src/data/contact.json"
+        fields:
+          - { name: heading, label: "Heading", widget: string }
+          - { name: body, label: "Main paragraph", widget: text }
+
       - name: theme
         label: "Section Backgrounds"
         file: "src/data/theme.json"

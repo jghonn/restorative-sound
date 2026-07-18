@@ -1,6 +1,7 @@
 ---
 import { site } from '../data/site';
 import theme from '../data/theme.json';
+import contact from '../data/contact.json';
 import { sectionProps } from '../utils/theme';
 ---
 
@@ -8,12 +9,8 @@ import { sectionProps } from '../utils/theme';
   <div class="container grid">
     <div class="intro reveal">
       <p class="eyebrow">Contact / Inquiry</p>
-      <h2>Let’s find a moment of rest for you.</h2>
-      <p class="sub">
-        Collaborations, referrals, organizational partnerships, and individual inquiries are all
-        warmly welcomed. Reach out with any questions — there’s no pressure, and no experience
-        needed.
-      </p>
+      <h2>{contact.heading}</h2>
+      <p class="sub">{contact.body}</p>
 
       <ul class="details">
         <li>
