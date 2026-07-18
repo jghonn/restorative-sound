@@ -1,5 +1,10 @@
 ---
 import { site } from '../data/site';
+import defaultLogo from '../assets/images/lynn-honn-logo-centered.png';
+import { resolveUpload } from '../utils/uploads';
+
+// CMS-managed (admin → General & Contact → Logo — stacked).
+const logo = resolveUpload(site.logoStacked, defaultLogo);
 
 const links = [
   { href: '#offerings', label: 'Offerings' },
@@ -13,8 +18,12 @@ const year = 2026; // update per launch year
 <footer class="footer">
   <div class="container inner">
     <div class="brand">
-      <p class="wordmark">Restorative <em>Sound Healing</em></p>
-      <p class="tag">{site.descriptor} · with {site.facilitator}</p>
+      <span
+        class="logo"
+        role="img"
+        aria-label={`${site.brand} — with ${site.facilitator}`}
+        style={`--logo-url: url(${logo.src}); aspect-ratio: ${logo.width} / ${logo.height};`}
+      ></span>
     </div>
 
     <nav class="foot-nav" aria-label="Footer">
@@ -43,19 +52,13 @@ const year = 2026; // update per launch year
     padding-bottom: 2rem;
     border-bottom: 1px solid rgba(246, 241, 232, 0.12);
   }
-  .wordmark {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    color: var(--bone);
-    margin: 0 0 0.25rem;
-  }
-  .wordmark em {
-    font-style: italic;
-  }
-  .tag {
-    margin: 0;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
+  /* Monochrome logo via CSS mask, painted bone on the dark footer. */
+  .brand .logo {
+    display: block;
+    height: 5.5rem;
+    background-color: var(--bone);
+    -webkit-mask: var(--logo-url) no-repeat left center / contain;
+    mask: var(--logo-url) no-repeat left center / contain;
   }
   .foot-nav {
     display: flex;

@@ -1,19 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import defaultHero from '../assets/images/IMG_0753_VSCO.jpg';
-import logo from '../assets/images/lynn-honn-logo-centered.png';
+import defaultLogo from '../assets/images/lynn-honn-logo-centered.png';
 import { site } from '../data/site';
 import home from '../data/home.json';
+import { resolveUpload } from '../utils/uploads';
 
-// The hero photo is CMS-managed (admin → Home Page Copy → Hero background photo).
-// Uploads land in src/assets/uploads; resolving them through import.meta.glob
-// keeps them in Astro's image pipeline. Falls back to the original hero photo
-// if the configured file is missing from the repo.
-const uploads = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/uploads/*',
-  { eager: true }
-);
-const heroImg = uploads[home.heroImage]?.default ?? defaultHero;
+// Photo and logo are CMS-managed (admin → Home Page Copy → Hero background
+// photo; admin → General & Contact → Logo — stacked), with bundled fallbacks.
+const heroImg = resolveUpload(home.heroImage, defaultHero);
+const logo = resolveUpload(site.logoStacked, defaultLogo);
 const heroAlt =
   home.heroAlt ||
   'A person resting with an eye pillow beside crystal singing bowls during a sound session';
@@ -38,7 +34,7 @@ const heroAlt =
       <span
         class="hero-logo"
         aria-hidden="true"
-        style={`--logo-url: url(${logo.src})`}
+        style={`--logo-url: url(${logo.src}); aspect-ratio: ${logo.width} / ${logo.height};`}
       ></span>
     </h1>
     <p class="hero-tagline">{site.tagline}</p>
@@ -99,7 +95,6 @@ const heroAlt =
   .hero-logo {
     display: block;
     width: min(22rem, 72vw);
-    aspect-ratio: 283 / 233;
     background-color: var(--bone);
     -webkit-mask: var(--logo-url) no-repeat left center / contain;
     mask: var(--logo-url) no-repeat left center / contain;

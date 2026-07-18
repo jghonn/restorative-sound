@@ -23,7 +23,7 @@ own within a minute or two.
 
 | Section | What's inside |
 |---------|---------------|
-| **Site Settings & Copy → General & Contact** | Tagline, email, phone, Instagram link |
+| **Site Settings & Copy → General & Contact** | The two logo files (wide for the header; stacked for the hero & footer — transparent-background, single-color PNGs), tagline, email, phone, Instagram link |
 | **Site Settings & Copy → Home Page Copy** | Intro paragraphs, the Restorative Response text, benefit chips, Offerings heading |
 | **Site Settings & Copy → About** | Your profile photo, About heading, opening line, and story paragraphs |
 | **Site Settings & Copy → Contact** | The Contact section's heading and main paragraph |

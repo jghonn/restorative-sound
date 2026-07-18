@@ -1,6 +1,10 @@
 ---
 import { site } from '../data/site';
-import logo from '../assets/images/lynn-honn-logo.png';
+import defaultLogo from '../assets/images/lynn-honn-logo.png';
+import { resolveUpload } from '../utils/uploads';
+
+// CMS-managed (admin → General & Contact → Logo — wide).
+const logo = resolveUpload(site.logoWide, defaultLogo);
 
 const links = [
   { href: '#offerings', label: 'Offerings' },
@@ -13,7 +17,10 @@ const links = [
 <header class="site-header" data-header>
   <div class="container bar">
     <a class="wordmark" href="#top" aria-label={`${site.brand} — home`}>
-      <span class="logo" style={`--logo-url: url(${logo.src})`}></span>
+      <span
+        class="logo"
+        style={`--logo-url: url(${logo.src}); aspect-ratio: ${logo.width} / ${logo.height};`}
+      ></span>
     </a>
 
     <nav class="nav" aria-label="Primary">
@@ -47,7 +54,6 @@ const links = [
   .wordmark .logo {
     display: block;
     height: 5rem;
-    aspect-ratio: 500 / 269;
     background-color: var(--bone);
     -webkit-mask: var(--logo-url) no-repeat center / contain;
     mask: var(--logo-url) no-repeat center / contain;

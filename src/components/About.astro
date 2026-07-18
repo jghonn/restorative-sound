@@ -5,15 +5,10 @@ import { site } from '../data/site';
 import about from '../data/about.json';
 import theme from '../data/theme.json';
 import { sectionProps } from '../utils/theme';
+import { resolveUpload } from '../utils/uploads';
 
-// The portrait is CMS-managed (admin → About). Uploads land in
-// src/assets/uploads and resolve through Astro's image pipeline, with the
-// original portrait as fallback if the configured file is missing.
-const uploads = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/uploads/*',
-  { eager: true }
-);
-const portrait = uploads[about.photo]?.default ?? defaultPortrait;
+// The portrait is CMS-managed (admin → About), with the original as fallback.
+const portrait = resolveUpload(about.photo, defaultPortrait);
 const portraitAlt = about.photoAlt || `Portrait of ${site.facilitator}`;
 ---
 
