@@ -2,11 +2,14 @@
 
 > **Brand / practice name:** Restorative Sound Healing · **Facilitator:** Abigail Honn
 
-> **Implementation status:** This system is built into the v1 site. Implemented: the palette
-> (as CSS variables in `src/styles/global.css`), the type pairing (**Cormorant Garamond** +
-> **Mulish**, self-hosted), and the full single-page layout, section by section. Still
-> outstanding: a proper **"Restorative Sound Healing" wordmark** (currently styled text) and
-> CMS-managed photo swaps (curated images are used for v1). See [README](../README.md).
+> **Implementation status:** This system is built and live. Implemented: the palette (as CSS
+> variables in `src/styles/global.css` — section backgrounds are now CMS-editable, defaulting
+> to this palette), the type pairing (**Cormorant Garamond** + **Mulish**, self-hosted), and
+> the full single-page layout, section by section. The wordmark is the reworked
+> **"Lynn honn · Restorative Sound"** logo (wide + stacked lockups) in the header, hero, and
+> footer, rendered via CSS mask so it recolors per location; all photos and logos are
+> CMS-managed. Note: the logo's naming differs from the "Restorative Sound Healing" text
+> brand — see README → Open questions. See [README](../README.md).
 
 Derived from the existing logo wordmark and the WebReady photography. The whole visual
 system already exists *in the images* — warm, earthy, quiet, natural. The site's job is to

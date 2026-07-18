@@ -4,8 +4,8 @@ This site has a built-in **content manager** so you can update text and testimon
 yourself, with no code. You make a change, click publish, and the live site updates on its
 own within a minute or two.
 
-> **Note:** the live editor turns on only after the site is deployed (domain + Netlify).
-> Until then, changes can be previewed locally (see the end of this guide).
+> The live editor is at **[restorativesound.org/admin/](https://restorativesound.org/admin/)**.
+> Publishing a change makes the site rebuild — it's live within a minute or two.
 
 ---
 
@@ -73,7 +73,7 @@ own within a minute or two.
 - Collections: `src/content/offerings/*.json`, `src/content/faq/*.json`, `src/content/testimonials/*.json`
 - Schemas: `src/content.config.ts` · CMS config: `public/admin/config.yml`
 
-**Preview the admin locally (before deploy):**
+**Preview the admin locally (edits land in the working tree, not on the live site):**
 ```bash
 npm run dev          # terminal 1  → http://localhost:4321
 npx decap-server     # terminal 2  (local backend; no login needed)
@@ -93,12 +93,13 @@ deprecated and were ruled out). [DecapBridge](https://decapbridge.com) is a free
 login + git-gateway service built for Decap CMS — editors sign in with email + password,
 no GitHub account needed.
 
-Setup (done 2026-07-13, in the DecapBridge dashboard):
+Setup (done 2026-07, in the DecapBridge dashboard — all live and in use):
 1. DecapBridge account created (Jason's); site added, linking `jghonn/restorative-sound`
    with a GitHub **fine-grained access token** (read/write on *Contents*; login URL
    `https://restorativesound.org/admin/index.html`).
 2. The site ID is wired into `public/admin/config.yml` (`identity_url`).
-3. Remaining: invite Abigail's email under **Manage collaborators** once the site is live.
+3. Abigail is invited as a collaborator and actively editing. Manage editors under
+   **Manage collaborators** in the DecapBridge dashboard.
 
 > If the GitHub token ever expires or is revoked, CMS publishing stops working (login
 > still succeeds) — generate a new fine-grained token and update it in the DecapBridge

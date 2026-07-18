@@ -1,13 +1,14 @@
 # Project Brief — Restorative Sound Healing
 
 > **Brand / practice name:** Restorative Sound Healing · **Facilitator:** Abigail Honn ·
-> **Domain:** `restorativesound.org` *(purchased)*
+> **Live at:** [restorativesound.org](https://restorativesound.org)
 
-> **Update:** The v1 site is built (Astro + Decap CMS). The single-page structure below is
-> implemented, and all copy now lives in editable files (`src/data/*.json`,
-> `src/content/**`) managed via `/admin`. The two previously-blank FAQ answers have been
-> drafted (review pending). Testimonials remain placeholders until real quotes arrive. See
-> the [README](../README.md) for build/deploy status and [EDITING-GUIDE](EDITING-GUIDE.md).
+> **Update:** The site is **live** (Astro + Decap CMS + DecapBridge auth, hosted on Netlify
+> with continuous deploy from GitHub). The single-page structure below is implemented, and
+> all copy, photos, logos, and section colors are editable via `/admin` — which Abigail uses
+> herself. Real testimonials are published and the FAQ answers have been reviewed/edited by
+> her. See the [README](../README.md) for the tech stack and
+> [EDITING-GUIDE](EDITING-GUIDE.md) for how editing works.
 
 ## The practice
 
@@ -79,7 +80,7 @@ keeps the build simple for v1.
 | About / Abigail | ✅ Ready | — |
 | FAQ | ⚠️ Mostly ready | "What to Expect" & "How does sound interact…" have no answers yet; some Q's have two answer variants |
 | Testimonials | ❌ Not gathered | Requesting from: Merrilyn, Johanna, Jess, Cami, Micaela (pp), Victory (pp). Maria struck out. |
-| Contact | ✅ Ready | Phone `208-789-7118` (note: source shows `208-789-71718` — verify), email `abigail.l.honn@gmail.com` |
+| Contact | ✅ Ready | Phone `208-789-7178` (confirmed by Abigail via CMS), email `abigail.l.honn@gmail.com` |
 
 ### Copy decisions to make
 - **Tagline** — choose between:

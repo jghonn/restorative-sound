@@ -7,13 +7,13 @@ clients to inquire and book.
 
 - **Brand / practice name:** Restorative Sound Healing
 - **Facilitator name (used in copy, About, contact):** Abigail Honn
-- **Domain:** `restorativesound.org` *(purchased — ready to connect at deploy)*
+- **Live site:** **[restorativesound.org](https://restorativesound.org)**
+- **Repo:** `github.com/jghonn/restorative-sound` · **Hosting:** Netlify (continuous deploy from `main`)
 
-> **Status:** v1 built and running locally. Astro site with all sections, real copy, optimized
-> images, a Netlify-ready inquiry form, and a **content manager (Decap CMS) at `/admin`** so
-> Abigail can edit text and testimonials herself. **Git repo initialized** (initial commit made).
-> The content manager has been verified locally. Not yet pushed to GitHub or deployed. The
-> domain `restorativesound.org` is purchased — deploy is unblocked. See [Open Questions](#open-questions).
+> **Status: LIVE.** The site is deployed and the content manager at
+> [`/admin/`](https://restorativesound.org/admin/) is in active use — Abigail edits copy,
+> photos, testimonials, and FAQs herself (each publish becomes a git commit and triggers a
+> Netlify rebuild). See [Open questions](#open-questions) for the small remaining items.
 
 ---
 
@@ -21,15 +21,25 @@ clients to inquire and book.
 
 - **[Astro](https://astro.build) 5** — static site generator (zero JS by default, built-in image optimization)
 - **[Decap CMS](https://decapcms.org)** — free, git-based content manager at `/admin` (see [Docs/EDITING-GUIDE.md](Docs/EDITING-GUIDE.md))
+- **[DecapBridge](https://decapbridge.com)** — hosted auth + git-gateway for the CMS: Abigail
+  logs in with email + password; her edits are committed to GitHub via a fine-grained PAT
+  registered in the DecapBridge dashboard (Jason's account). Chosen because Netlify
+  Identity/Git Gateway are deprecated.
 - **Self-hosted fonts** — Cormorant Garamond (display) + Mulish (body) via `@fontsource`
-- **Netlify** — hosting + free built-in Forms for the inquiry form (see `netlify.toml`)
+- **Netlify** — hosting (continuous deploy from `main`) + free built-in Forms for the inquiry form (see `netlify.toml`)
+- **GitHub** — `jghonn/restorative-sound`; every CMS publish lands here as a commit
+  ("… via DecapBridge" author attribution)
 
 ## Content model (editable via `/admin`)
 
-All page copy lives in data files, not in the components:
+All page copy, photos, logos, and section colors live in data files, not in the components:
 
-- **Singletons:** `src/data/general.json` (contact/tagline), `src/data/home.json` (section copy), `src/data/about.json`
+- **Singletons:** `src/data/general.json` (logos, contact, tagline), `home.json` (hero photo +
+  section copy), `about.json` (portrait + story), `contact.json`, `footer.json`,
+  `theme.json` (per-section background colors; dark colors auto-switch to light text)
 - **Collections:** `src/content/{offerings,faq,testimonials}/*.json` (schemas in `src/content.config.ts`)
+- **Media library:** uploads land in `src/assets/uploads/` so they pass through Astro's
+  image pipeline; components resolve stored paths via `src/utils/uploads.ts`
 - **CMS config:** `public/admin/config.yml`
 
 Fixed brand identity (name, domain) stays in `src/data/site.ts`.
@@ -69,10 +79,10 @@ AbigailHonn/
 │   └── EDITING-GUIDE.md           ← for Abigail: how to use the /admin content manager
 ├── public/
 │   ├── admin/                     ← Decap CMS (content manager UI + config.yml)
-│   ├── uploads/                   ← CMS media folder
 │   └── favicon.svg
 ├── src/
-│   ├── data/                      ← editable copy: site.ts, general.json, home.json, about.json
+│   ├── data/                      ← editable singletons: site.ts, general/home/about/
+│   │                                contact/footer/theme .json
 │   ├── content/                   ← editable collections: offerings/, faq/, testimonials/ (*.json)
 │   ├── content.config.ts          ← collection schemas
 │   ├── styles/global.css          ← palette + type system (CSS variables)
@@ -80,28 +90,28 @@ AbigailHonn/
 │   ├── components/                ← Header, Hero, Intro, RestorativeResponse,
 │   │                                Offerings, About, Faq, Testimonials, Contact, Footer
 │   ├── pages/index.astro          ← single-page scroll composition
-│   └── assets/images/             ← WebReady images (Astro optimizes → WebP)
+│   ├── utils/                     ← uploads.ts (media resolver), theme.ts (section colors)
+│   └── assets/
+│       ├── images/                ← bundled images (fallbacks, textures)
+│       └── uploads/               ← CMS media library (Astro optimizes → WebP)
 └── Images/
     ├── Source/                    ← full-resolution originals (JPG / HEIC)
     └── WebReady/                  ← web-optimized exports (source for src/assets/images)
 ```
 
-## Deployment (Netlify)
+## Deployment (live)
 
-1. The git repo is already initialized locally (initial commit made). Create an empty GitHub
-   repo, then add it as a remote and push:
-   ```bash
-   git remote add origin https://github.com/<owner>/<repo>.git
-   git push -u origin main
-   ```
-2. In Netlify: **New site from Git** → pick the repo. Build settings auto-detect from `netlify.toml`
-   (`npm run build`, publish `dist`).
-3. Add the custom domain `restorativesound.org` and enable HTTPS.
-4. Inquiry submissions appear under **Forms** in the Netlify dashboard (add a notification email).
-5. **Turn on the content manager:** the [DecapBridge](https://decapbridge.com) site is
-   created and wired into `public/admin/config.yml` — just invite Abigail's email from the
-   DecapBridge dashboard (**Manage collaborators**). (Netlify Identity/Git Gateway are
-   deprecated — not used.) See [Docs/EDITING-GUIDE.md](Docs/EDITING-GUIDE.md).
+The pipeline is fully automated — there are no manual deploy steps:
+
+1. **Push to `main`** (or publish in the CMS, which commits to `main`) → Netlify builds
+   (`npm run build`, publish `dist`; settings in `netlify.toml`) → live at
+   [restorativesound.org](https://restorativesound.org) in ~a minute.
+2. **Inquiry form** submissions appear under **Forms** in the Netlify dashboard.
+3. **CMS auth** is managed in the [DecapBridge](https://decapbridge.com) dashboard
+   (Jason's account): invite/remove editors under **Manage collaborators**. The GitHub
+   fine-grained PAT registered there is what lets the CMS commit — if it expires or is
+   revoked, CMS logins still work but publishing fails; regenerate the token (repo Contents
+   read/write) and update it in DecapBridge.
 
 ## Documentation
 
@@ -114,22 +124,28 @@ AbigailHonn/
 
 ## Image inventory (`Images/WebReady/`)
 
-| File | What it shows | Suggested use |
-|------|---------------|---------------|
-| `IMG_0991.jpg` | "Lynn honn" wordmark, cream italic serif on sepia | Old wordmark — style reference for a new "Restorative Sound Healing" mark |
-| `IMG_0753_VSCO.jpg` | Client reclining with eye mask, bowls in foreground | Home hero / Offerings |
-| `IMG_3792.jpg` | Array of frosted crystal singing bowls on linen | Hero background / section header |
-| `IMG_0918_VSCO.jpg` | Hands playing a singing bowl over a client | Private Sessions / process |
-| `IMG_0966.jpg` | B&W mother-and-child stone sculpture | Postpartum Sessions |
-| `IMG_0978.jpg` | Portrait of a woman | About Me |
-| `FullSizeRender_VSCO.jpg` | Hand touching a hanging seed-chime by a window | Texture / accent / The Restorative Response |
+| File | What it shows | Where it's used |
+|------|---------------|-----------------|
+| `lynn-honn-logo.png` | "Lynn honn · Restorative Sound" mark, wide lockup | Header (via CMS logo slot) |
+| `LynnHonnLogo-Centered.PNG` | Same mark, stacked/centered lockup | Hero + footer (via CMS logo slots) |
+| `IndividualRestorativeSoundSession.jpg` | Client resting, bowl being played beside them | Hero background (via CMS) |
+| `IMG_0991.jpg` | Original "Lynn honn" wordmark scan, cream on sepia | Style reference (superseded by the logo PNGs) |
+| `IMG_0753_VSCO.jpg` | Client reclining with eye mask, bowls in foreground | Bundled fallback for the hero photo |
+| `IMG_3792.jpg` | Array of frosted crystal singing bowls on linen | Offerings (in media library as `crystal-singing-bowls`) |
+| `IMG_0918_VSCO.jpg` | Hands playing a singing bowl over a client | Offerings (in media library as `hands-playing-bowl`) |
+| `IMG_0966.jpg` | B&W mother-and-child stone sculpture | Offerings (in media library as `postpartum-mother-child-sculpture`) |
+| `IMG_0978.jpg` | Portrait of Abigail | About (in media library as `abigail-portrait`) |
+| `FullSizeRender_VSCO.jpg` | Hand touching a hanging seed-chime by a window | The Restorative Response |
 
 ## Decisions locked
 
 - **Brand / practice name:** **Restorative Sound Healing** (evocative, keeps the "sound"
   differentiator, uses her own vocabulary).
-- **Facilitator name:** **Abigail Honn** — used in copy, About, and contact. (The existing
-  "Lynn honn" wordmark can be retired or reworked to the new brand; see design docs.)
+- **Facilitator name:** **Abigail Honn** — used in copy, About, and contact.
+- **Logo:** the reworked **"Lynn honn · Restorative Sound"** mark (wide + stacked lockups) is
+  used in the header, hero, and footer — CMS-swappable via three logo slots in General &
+  Contact. Rendered via CSS mask (single-color, transparent PNGs), so the site recolors it
+  per location.
 - **Domain:** **`restorativesound.org`** — **purchased.** (Earlier working candidate was
   `restorativesoundhealing.com`; the shorter `.org` was chosen and registered instead.)
 - **CMS auth: DecapBridge** — free hosted email+password login for `/admin`, no GitHub
@@ -138,17 +154,22 @@ AbigailHonn/
 
 ## Open questions
 
-1. **Wordmark** — the current "Lynn honn" mark doesn't match the new brand name; recreate a "Restorative Sound Healing" wordmark (see design docs).
+1. **Brand naming split** — the logo reads "Lynn honn · Restorative Sound" while the site's
+   text (page title, meta, copyright, copy) says "Restorative Sound Healing." Decide the
+   official name and align `site.ts` + copy if needed.
+2. **Session lengths / pricing / service area** — still not published; add when Abigail is ready.
 
-## Next steps
+## Launch checklist (done)
 
 - [x] Confirm brand name and domain — **Restorative Sound Healing** / `restorativesound.org`
 - [x] Confirm tech stack — **Astro + Netlify** (free)
 - [x] Scaffold the site and build all pages per the design recommendations
 - [x] Add a content manager (`/admin`) so Abigail can edit text & testimonials
-- [x] Register the domain — **`restorativesound.org`** purchased
-- [ ] Deploy to Netlify + turn on the content manager (see [Deployment](#deployment-netlify))
-- [ ] Create a new "Restorative Sound Healing" wordmark (style ref: `IMG_0991.jpg`) — currently a serif text placeholder
-- [ ] Review the two drafted FAQ answers (were blank in the source)
-- [ ] Gather outstanding content: **real testimonials** (placeholders in place), session lengths/pricing, service area
-- [ ] Confirm phone number (source shows an 11-digit number; using `208-789-7118`)
+- [x] Register the domain and connect it — **`restorativesound.org`** live with HTTPS
+- [x] Deploy to Netlify with continuous deployment from GitHub
+- [x] CMS auth via DecapBridge; Abigail invited and actively editing
+- [x] Logo — the reworked "Lynn honn · Restorative Sound" mark in header, hero, and footer
+- [x] FAQ answers reviewed and edited by Abigail (via CMS)
+- [x] Real testimonials added by Abigail; placeholders removed
+- [x] Phone number confirmed/corrected by Abigail via CMS (`208-789-7178`)
+- [x] All photos, logos, section copy, and section background colors editable via CMS
