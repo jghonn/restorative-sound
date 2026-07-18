@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import heroImg from '../assets/images/IMG_0753_VSCO.jpg';
+import logo from '../assets/images/lynn-honn-logo-centered.png';
 import { site } from '../data/site';
 ---
 
@@ -18,7 +19,14 @@ import { site } from '../data/site';
 
   <div class="container hero-inner">
     <p class="hero-eyebrow">{site.descriptor}</p>
-    <h1 class="hero-title">Restorative<br /><em>Sound Healing</em></h1>
+    <h1 class="hero-title">
+      <span class="visually-hidden">{site.brand}</span>
+      <span
+        class="hero-logo"
+        aria-hidden="true"
+        style={`--logo-url: url(${logo.src})`}
+      ></span>
+    </h1>
     <p class="hero-tagline">{site.tagline}</p>
     <a class="btn hero-cta" href="#contact">Inquire about a session</a>
   </div>
@@ -70,15 +78,18 @@ import { site } from '../data/site';
     margin: 0 0 1.1rem;
   }
   .hero-title {
-    color: var(--bone);
-    font-weight: 500;
     margin: 0 0 1.2rem;
-    line-height: 1.02;
-    text-shadow: 0 2px 30px rgba(43, 39, 35, 0.4);
   }
-  .hero-title em {
-    font-style: italic;
-    font-weight: 500;
+  /* Monochrome logo rendered via CSS mask so it takes the site palette
+     (bone over the hero scrim), same technique as the header wordmark. */
+  .hero-logo {
+    display: block;
+    width: min(22rem, 72vw);
+    aspect-ratio: 283 / 233;
+    background-color: var(--bone);
+    -webkit-mask: var(--logo-url) no-repeat left center / contain;
+    mask: var(--logo-url) no-repeat left center / contain;
+    filter: drop-shadow(0 2px 30px rgba(43, 39, 35, 0.4));
   }
   .hero-tagline {
     font-family: var(--font-serif);
