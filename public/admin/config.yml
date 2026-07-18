@@ -88,6 +88,13 @@ collections:
           - { name: heading, label: "Heading", widget: string }
           - { name: body, label: "Main paragraph", widget: text }
 
+      - name: footer
+        label: "Footer"
+        file: "src/data/footer.json"
+        fields:
+          - { name: copyright, label: "Copyright line", widget: string, hint: "The © symbol and current year are added automatically in front of this text." }
+          - { name: email, label: "Footer email address", widget: string }
+
       - name: theme
         label: "Section Backgrounds"
         file: "src/data/theme.json"

@@ -1,9 +1,11 @@
 ---
 import { site } from '../data/site';
 import defaultLogo from '../assets/images/lynn-honn-logo-centered.png';
+import footer from '../data/footer.json';
 import { resolveUpload } from '../utils/uploads';
 
-// CMS-managed (admin → General & Contact → Logo — footer).
+// Logo, copyright line, and email are CMS-managed (admin → General & Contact
+// → Logo — footer; admin → Footer).
 const logo = resolveUpload(site.logoFooter, defaultLogo);
 
 const links = [
@@ -12,7 +14,8 @@ const links = [
   { href: '#faq', label: 'FAQ' },
   { href: '#contact', label: 'Contact' },
 ];
-const year = 2026; // update per launch year
+// Stamped at build time; the site rebuilds on every publish.
+const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
@@ -32,8 +35,8 @@ const year = 2026; // update per launch year
   </div>
 
   <div class="container base">
-    <p>© {year} {site.brand}. All rights reserved.</p>
-    <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+    <p>© {year} {footer.copyright}</p>
+    <p><a href={`mailto:${footer.email}`}>{footer.email}</a></p>
   </div>
 </footer>
 
